@@ -20,14 +20,14 @@ const BracketTableRow = (props) => {
       <td>{props.obj.max}</td>
       <td>{props.obj.tax}</td>
       <td>
-        <button onClick={edit(props.obj.id)} className="btn btn-primary" disabled>
+        {/* <button onClick={edit(props.obj.id)} className="btn btn-primary" disabled>
           Edit
-        </button>
+        </button> */}
       </td>
       <td>
-        <button onClick={remove(props.obj.id)} className="btn btn-danger" disabled>
+        {/* <button onClick={remove(props.obj.id)} className="btn btn-danger" disabled>
           Delete
-        </button>
+        </button> */}
       </td>
     </tr>
   );

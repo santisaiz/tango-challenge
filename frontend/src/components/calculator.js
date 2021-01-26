@@ -35,7 +35,7 @@ const Calculator = (props) => {
     axios
       .post("http://localhost:3001/api/v1/calculator", {
         incomeList: {
-          ...incomeList.map((x) => x.income),
+          ...incomeList.map((x) => x[0]),
         },
       })
       .then(function (response) {
@@ -83,7 +83,7 @@ const Calculator = (props) => {
             const value = Number(e.target.value);
 
             if (e.charCode === 13 && value > 0) {
-              incomeList.push({ income: value, tax: "" });
+              incomeList.push([  value, ""] );
               setIncomeList(incomeList);
               setIncome(0);
             }
