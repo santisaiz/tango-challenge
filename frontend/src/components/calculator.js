@@ -32,19 +32,15 @@ const Calculator = (props) => {
   };
 
   const process = () => {
-    let payload = {
-      incomeList: { incomeList },
-    };
-
     axios
       .post("http://localhost:3001/api/v1/calculator", {
         incomeList: {
-          ...(incomeList.map(x => x.income)),
+          ...incomeList.map((x) => x.income),
         },
       })
       .then(function (response) {
-        // your action after success
-        setIncomeList(response.data)
+        // your action after success 
+        setIncomeList(response.data);
       })
       .catch(function (error) {
         // your action on error success
@@ -68,29 +64,46 @@ const Calculator = (props) => {
       </table>
 
       <h3 align="center">Income calculator </h3>
-      <tr>
-        <td>
-          <input
-            value={income}
-            onChange={(e) => setIncome(e.target.value)}
-            type="number"
-            onKeyPress={(e) => {
-              const value = Number(e.target.value);
 
-              if (e.charCode === 13 && value > 0) {
-                incomeList.push({income: value,tax:''});
-                setIncomeList(incomeList);
-                setIncome(0);
-              }
-            }}
-          />
-        </td>
-        <td>
+      <h6 align="left">
+        * Press enter to add new incomes (only > 0 values), when finish, click
+        process button{" "}. Press Clear to empty table.
+      </h6>
+
+      <div class="input-group mb-3">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Income"
+          aria-label="Income"
+          aria-describedby="basic-addon2"
+          value={income}
+          onChange={(e) => setIncome(e.target.value)}
+          onKeyPress={(e) => {
+            const value = Number(e.target.value);
+
+            if (e.charCode === 13 && value > 0) {
+              incomeList.push({ income: value, tax: "" });
+              setIncomeList(incomeList);
+              setIncome(0);
+            }
+          }}
+        />
+        <div class="input-group-append">
           <button onClick={process} className="btn btn-primary">
             Process
           </button>
-        </td>
-      </tr>
+        </div>
+        <div class="input-group-append">
+          <button
+            onClick={(e) => setIncomeList([])}
+            className="btn btn-secondary"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>

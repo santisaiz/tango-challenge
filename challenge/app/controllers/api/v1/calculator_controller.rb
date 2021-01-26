@@ -13,10 +13,10 @@ module Api::V1
        result = []
        @brackets.each do |bracket|
 
-         result.push(income_params.select {|income| income > bracket.min && income <= bracket.max }.map{|value| [value,value*bracket.tax/100]})
+         result.concat(income_params.select {|income| income > bracket.min && income <= bracket.max }.map{|value| [value,value*bracket.tax/100]})
        end
 
-       render json:income_params
+       render json:result.reject { |c| c.empty? }
      end
 
 

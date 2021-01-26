@@ -4,8 +4,8 @@ const IncomeTableRow = (props) => {
 
   return (
     <tr>
-      <td>{props.obj.income}</td>
-      <td>{props.obj.tax}</td>
+      <td>{props.obj[0]}</td>
+      <td>{props.obj[1]}</td>
     </tr>
   );
 };
